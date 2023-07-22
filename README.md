@@ -1,85 +1,64 @@
-# Assessment Contract
+# Ethereum Smart Contract Interaction with React
 
-This is a Solidity smart contract named "Assessment" that allows an owner to manage a balance and perform deposit and withdrawal operations.
+This project is a web application that allows users to interact with an Ethereum smart contract named "Assessment." Users can connect their Ethereum wallets (e.g., MetaMask) to the application, view their account balance, deposit funds to the smart contract, and withdraw funds from it.
 
-## License
+## Features
 
-This project is licensed under the SPDX-License-Identifier: UNLICENSED.
+- Connect Ethereum Wallet: Users can connect their Ethereum wallets to the web application to interact with the "Assessment" smart contract.
+- Account Balance: The application displays the user's connected Ethereum account address and account balance retrieved from the smart contract.
+- Deposit Funds: Users can deposit funds to the smart contract using the provided input field and the "Deposit" button.
+- Withdraw Funds: Users can withdraw funds from the smart contract using the provided input field and the "Withdraw" button.
+- Transaction Status: The application provides real-time transaction status updates to inform users about the outcome of their deposit and withdrawal actions.
+- Error Handling: In case of any errors during transactions, appropriate error messages are displayed to guide users.
 
 ## Prerequisites
 
-- Solidity version: ^0.8.9
+To use this application, you need the following:
 
-## Contract Details
+- A web browser with a MetaMask extension installed (or any other Ethereum wallet that supports Ethereum provider APIs).
+- A test network or local Ethereum node to deploy and interact with the "Assessment" smart contract.
 
-The `Assessment` contract has the following features:
+## Getting Started
 
-### State Variables
+1. Clone this repository to your local machine.
 
-- `owner`: An `address` variable representing the owner of the contract.
-- `balance`: A `uint256` variable representing the current balance of the contract.
-
-### Events
-
-- `Deposit(uint256 amount)`: An event emitted when a deposit is made. It includes the deposited amount as a parameter.
-- `Withdraw(uint256 amount)`: An event emitted when a withdrawal is made. It includes the withdrawn amount as a parameter.
-
-### Constructor
-
-The constructor function initializes the contract with an initial balance. It takes a `uint256` parameter `initBalance` and assigns it to the `balance` variable. The sender of the transaction is set as the `owner`.
-
-### Functions
-
-- `getBalance()`: A public view function that returns the current balance of the contract.
-
-- `deposit(uint256 _amount)`: A public payable function that allows the owner to deposit additional funds to the contract. It takes a `uint256` parameter `_amount` representing the amount to be deposited. The function increases the balance by the deposited amount and emits a `Deposit` event.
-
-- `withdraw(uint256 _withdrawAmount)`: A public function that allows the owner to withdraw funds from the contract. It takes a `uint256` parameter `_withdrawAmount` representing the amount to be withdrawn. If the balance is insufficient, it reverts the transaction with an `InsufficientBalance` error. Otherwise, it subtracts the withdrawal amount from the balance, emits a `Withdraw` event, and asserts that the balance is updated correctly.
-
-### Custom Error
-
-- `InsufficientBalance(uint256 balance, uint256 withdrawAmount)`: A custom error used in the `withdraw` function to revert the transaction when the balance is insufficient for the requested withdrawal amount. The error includes the current balance and the requested withdrawal amount.
-
-## Usage
-
-To use this contract, follow these steps:
-
-1. Deploy the contract to a supported blockchain network using Solidity compiler version ^0.8.9.
-2. Initialize the contract by providing an initial balance value.
-3. As the contract owner, you can perform the following operations:
-   - Use the `deposit` function to add funds to the contract.
-   - Use the `withdraw` function to withdraw funds from the contract.
-
-Note: Only the contract owner can perform deposit and withdrawal operations.
-
-## Example
-
-Here's an example usage of the `Assessment` contract:
-
-```solidity
-Assessment contract = new Assessment(1000);
-
-contract.getBalance(); // Returns 1000
-
-contract.deposit{value: 500}(500); // Deposits 500 wei to the contract
-
-contract.getBalance(); // Returns 1500
-
-contract.withdraw(800); // Withdraws 800 wei from the contract
-
-contract.getBalance(); // Returns 700
+```bash
+git clone https://github.com/your-username/ethereum-react-smart-contract-interaction.git
+cd ethereum-react-smart-contract-interaction
 ```
 
-In this example, the contract is initialized with an initial balance of 1000 wei. The owner then makes a deposit of 500 wei and performs a withdrawal of 800 wei, resulting in a remaining balance of 700 wei.
+2. Install the project dependencies.
 
-## License Information
+```bash
+npm install
+```
 
-This project is licensed under the SPDX-License-Identifier: UNLICENSED. For more information, please refer to the SPDX-License-Identifier documentation.
+3. Deploy the "Assessment" smart contract to your chosen Ethereum network or local node.
 
+4. Update the `contractAddress` variable in `HomePage.js` with the deployed smart contract address.
 
-1.Inside the project directory, in the terminal type: npm i
-2.Open two additional terminals in your VS code
-3.In the second terminal type: npx hardhat node
-4.In the third terminal, type: npx hardhat run --network localhost scripts/deploy.js
-5.Back in the first terminal, type npm run dev to launch the front-end.
-6.After this, the project will be running on your localhost. Typically at http://localhost:3000/
+5. Run the development server.
+
+```bash
+npm start
+```
+
+6. Open your web browser and navigate to `http://localhost:3000` to access the application.
+
+## How to Use
+
+1. Connect Wallet: Click the "Connect Wallet" button to connect your Ethereum wallet (e.g., MetaMask) and authorize it to interact with the application.
+
+2. Account Information: After connecting your wallet, you will see your connected Ethereum account address and account balance fetched from the smart contract.
+
+3. Deposit: Enter the amount of Ether you want to deposit in the "Deposit Amount(ETH)" input field and click the "Deposit" button. The transaction status will be displayed, and the account balance will be updated after a successful deposit.
+
+4. Withdraw: Enter the amount of Ether you want to withdraw in the "Withdraw Amount(ETH)" input field and click the "Withdraw" button. The transaction status will be displayed, and the account balance will be updated after a successful withdrawal.
+
+## Troubleshooting
+
+If you encounter any issues while using the application, please make sure:
+
+- You have an active internet connection.
+- Your Ethereum wallet (e.g., MetaMask) is properly configured and connected to the desired network.
+- The "Assessment" smart contract is deployed to the correct address and is accessible from your connected wallet.
